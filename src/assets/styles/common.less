@@ -1,0 +1,35 @@
+.c-column-all-center {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.c-row-all-center {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.c-full-page {
+    width: 100%;
+    height: 100%;
+}
+
+.c-flex-center(@type) {
+    display: flex;
+    flex-direction: @type;
+    justify-content: center;
+}
+
+.c-flex-all-center(@type) {
+    .c-flex-center(@type);
+    justify-content: center;
+}
+
+
+.c-square(@width){
+    width: @width;
+    height: @width;
+}
