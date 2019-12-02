@@ -1,0 +1,7 @@
+export const HOME_PAGE = '/home'
+export const STORY_PAGE = '/story'
+export const BEFORE_GAME_PAGE = '/beforeGame'
+export const SELECT_SOLDIER_PAGE = '/selectSoldier'
+export const GAME_MAP_PAGE = '/gameMap'
+export const THING_SYSTEM_PAGE = '/thingsSystem'
+export const LOG_PAGE = '/log'

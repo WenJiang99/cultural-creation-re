@@ -1,7 +1,25 @@
+@PAGE_WIDTH: 1300px;
+@PAGE_HEIGHT: 700px;
+
 html,
-body,
-#root {
+body {
   width: 100%;
   height: 100%;
   font-size: 16px;
+  .c-flex-all-center(row);
+  overflow-y: hidden;
+
+}
+
+#root {
+  @PAGE_WIDTH: 1200px;
+  @PAGE_HEIGHT: 700px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.page {
+  width: @PAGE_WIDTH;
+  height: @PAGE_HEIGHT;
 }

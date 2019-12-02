@@ -1,32 +1,41 @@
 import * as React from 'react'
-import { Button } from "antd"
-import ConnectStore from '../../components/ConnectStore'
 import { useHistory } from 'react-router'
+import ConnectStore from '@/components/ConnectStore'
 
 import './index.less'
+import Background from '@/components/Background'
+import bg from "@/assets/images/home/bg.png"
+import startGamePic from "@/assets/images/home/start-game.png"
+import watchStoryPic from "@/assets/images/home/watch.png"
+import CPage from '@/components/Page'
+import { BEFORE_GAME_PAGE, STORY_PAGE } from '@/lib/constant/router_path'
+import { IPageBaseProps } from '@/interfaces/page'
 
 type Props = {
-  count
-  add
-  subtract
-}
 
-function Home({ count, add, subtract }: Props) {
+} & IPageBaseProps
+
+function Home({ soldierType }: Props) {
   const history = useHistory()
+
   return (
-    <div className="home-page c-column-all-center c-full-page">
-      <div className="button-groups ">
-        <Button onClick={() => { history.push("/login") }}>Login</Button>
-        <Button onClick={() => history.goBack()}>Back</Button>
-      </div>
-      <div className="counter-container c-row-all-center">
-        <Button onClick={add}>add</Button>
-        <div className="counter-value">
-          {count}
+    <CPage bg={bg}>
+      <div className="home-page">
+        <div className="home-menu">
+          <div className="c-use-background home-menu-item " onClick={() => {
+            history.push(BEFORE_GAME_PAGE)
+          }}>
+            <Background img={startGamePic} opacity={1} />
+          </div>
+          <div className="c-use-background home-menu-item " onClick={() => {
+            history.push(STORY_PAGE)
+          }}>
+            <Background img={watchStoryPic} opacity={1} />
+          </div>
         </div>
-        <Button onClick={subtract}>sub</Button>
       </div>
-    </div>
+
+    </CPage>
   )
 }
 

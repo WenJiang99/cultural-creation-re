@@ -2,19 +2,20 @@ import * as React from "react"
 import { RouterProps } from "react-router"
 import { increase, decrease } from "../../store/action/counter"
 import { connect } from "react-redux"
+import { ReduxStateType } from "../../store"
+import { soldier } from "@/store/action/soldier"
+import { IMapedDispatch, IMapedState } from "@/interfaces/redux"
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state: ReduxStateType) => {
   return {
-    count: state.count
+    soldierType: state.soldierType
   }
 }
 const mapDispatchToProps = (dispatch) => {
   return {
-    add() {
-      dispatch(increase())
-    },
-    subtract() {
-      dispatch(decrease())
+    setSoldierType(type: string) {
+      const _type = soldier(type)
+      dispatch(_type)
     }
   }
 }

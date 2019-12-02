@@ -1,14 +1,35 @@
+@HOME_MENU_WIDTH: 157px;
 
-.home-page {
-  background-color: violet;
+@MENU_ITEM_WIDTH: 128px;
+@MENU_ITEM_HEIGHT: 62px;
 
-  >* {
-    margin: 20px;
+.home {
+  &-page {
+    display: flex;
+    flex-direction: row-reverse;
+    width: 100%;
+    height: 100%;
   }
 
-  .button-groups {
-    .c-flex-center(row-reverse);
-    .c-square(200px);
-    background-color: yellowgreen;;
+  &-menu {
+    .c-flex(column);
+    align-items: center;
+    width: @HOME_MENU_WIDTH;
+    height: 300px;
+    margin-top: 87px;
+    margin-right: 11px;
+
+    &-item {
+      width: @MENU_ITEM_WIDTH;
+      height: @MENU_ITEM_HEIGHT;
+      margin: 20px;
+
+      &:hover {
+        cursor: pointer;
+        transition: all;
+        transition-duration: 500ms;
+        transform: scale(1.05);
+      }
+    }
   }
 }

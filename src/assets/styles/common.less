@@ -1,35 +1,106 @@
+@C_SCROLL_BAR_WIDTH: 18px;
+
+.c-column-center {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.c-row-center {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
 .c-column-all-center {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .c-row-all-center {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
 }
 
-.c-full-page {
-    width: 100%;
-    height: 100%;
-}
 
 .c-flex-center(@type) {
-    display: flex;
-    flex-direction: @type;
-    justify-content: center;
+  display: flex;
+  flex-direction: @type;
+  justify-content: center;
 }
 
 .c-flex-all-center(@type) {
-    .c-flex-center(@type);
-    justify-content: center;
+  .c-flex-center(@type);
+  justify-content: center;
 }
 
 
-.c-square(@width){
-    width: @width;
-    height: @width;
+.c-flex(@type) {
+  display: flex;
+  flex-direction: @type;
+}
+
+.c-full-page {
+  width: 100%;
+  height: 100%;
+}
+
+.c-use-background {
+  position: relative;
+}
+
+
+.c-i-am-background {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  opacity: 0.5;
+  z-index: -99;
+  background-color: transparent;
+
+  img {
+    width: 100%;
+    height: 100%;
+    background-color: transparent;
+  }
+}
+
+.c-clickable-item {
+  cursor: pointer;
+
+}
+
+.c-selected-item {
+  opacity: 0.5;
+}
+
+.c-scrollable-wrapper-y {
+  // width: 100%;
+  height: 100%;
+  margin-right: -@C_SCROLL_BAR_WIDTH;
+  padding-right: @C_SCROLL_BAR_WIDTH;
+  overflow-y: auto;
+}
+
+.c-use-scrollable {
+  overflow: hidden;
+}
+
+.c-square(@width) {
+  width: @width;
+  height: @width;
+}
+
+
+.c-clickable(@factor) {
+  cursor: pointer;
+  transition: all;
+  transition-duration: 300ms;
+  transform: scale(@factor);
 }

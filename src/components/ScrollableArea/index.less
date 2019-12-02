@@ -1,0 +1,37 @@
+@SCROLL_BAR_WIDTH: 18px;
+
+.scrollable {
+  &-wrapper {
+    overflow: hidden;
+  }
+
+  &-area {
+    width: 100%;
+    max-height: 100%;
+    display: flex;
+    flex-direction: column;
+    // align-items: center;
+  }
+
+ 
+}
+.y-scrollable {
+  margin-right: -@SCROLL_BAR_WIDTH;
+  padding-right: @SCROLL_BAR_WIDTH;
+  overflow-y: auto;
+}
+
+.x-scrollable {
+  margin-bottom: -@SCROLL_BAR_WIDTH;
+  padding-bottom: @SCROLL_BAR_WIDTH;
+  overflow-x: auto;
+}
+
+.all-scrollable {
+  margin-bottom: -@SCROLL_BAR_WIDTH;
+  padding-bottom: @SCROLL_BAR_WIDTH;
+  overflow-x: auto;
+  margin-right: -@SCROLL_BAR_WIDTH;
+  padding-right: @SCROLL_BAR_WIDTH;
+  overflow-y: auto;
+}
