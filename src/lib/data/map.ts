@@ -9,7 +9,61 @@ export const NODE_LIST: INodeType[] = [
   {
     x: 947,
     y: 627,
-    name: "赣县"
+    name: "赣县",
+    roadPoints: [
+      {
+        x: 998,
+        y: 610
+      },
+      {
+        x: 991,
+        y: 614
+      },
+      {
+        x: 987,
+        y: 620
+      },
+      {
+        x: 964,
+        y: 634
+      },
+      {
+        x: 956,
+        y: 632
+      }
+    ],
+    roadFlagPoint: [
+      {
+        startPoint: {
+          x: 1009,
+          y: 603,
+        },
+        endPoint: {
+          x: 980,
+          y: 628
+        }
+      },
+      {
+        startPoint: {
+          x: 980,
+          y: 628
+        },
+        endPoint: {
+          x: 963,
+          y: 633
+        },
+      },
+      {
+        startPoint: {
+          x: 963,
+          y: 633
+        },
+        endPoint: {
+          x: 947,
+          y: 627,
+        },
+      }
+    ]
   },
   {
     x: 905,
