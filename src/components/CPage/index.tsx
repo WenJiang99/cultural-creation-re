@@ -1,6 +1,6 @@
 import * as React from 'react'
 import './index.less'
-import Background from '../../components/Background'
+import Background from '../Background'
 import PageMenuButton from '../PageMenuButton'
 
 type Props = {

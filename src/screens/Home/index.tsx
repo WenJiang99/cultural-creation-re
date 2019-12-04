@@ -7,7 +7,7 @@ import Background from '@/components/Background'
 import bg from "@/assets/images/home/bg.png"
 import startGamePic from "@/assets/images/home/start-game.png"
 import watchStoryPic from "@/assets/images/home/watch.png"
-import CPage from '@/components/Page'
+import CPage from '@/components/CPage'
 import { BEFORE_GAME_PAGE, STORY_PAGE } from '@/lib/constant/router_path'
 import { IPageBaseProps } from '@/interfaces/page'
 

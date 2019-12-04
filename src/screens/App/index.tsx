@@ -4,7 +4,7 @@ import { Provider } from "react-redux"
 import { store } from "@/store"
 import './index.less'
 import "@/assets/styles/common.less"
-import { HOME_PAGE, STORY_PAGE, BEFORE_GAME_PAGE, SELECT_SOLDIER_PAGE, GAME_MAP_PAGE, THING_SYSTEM_PAGE, LOG_PAGE } from "@/lib/constant/router_path"
+import { HOME_PAGE, STORY_PAGE, BEFORE_GAME_PAGE, SELECT_SOLDIER_PAGE, GAME_MAP_PAGE, THING_SYSTEM_PAGE, LOG_PAGE, FISH_PAGE } from "@/lib/constant/router_path"
 import Loading from "@/components/Loading"
 
 const Home = lazy(() => import(/*webpackChunkName:"home"*/"../Home"))
@@ -15,6 +15,8 @@ const SelectSoldier = lazy(() => import(/*webpackChunkName:"selectsoldier"*/"../
 const GameMap = lazy(() => import(/*webpackChunkName:"gamemap"*/"../GameMap"))
 const ThingsSystem = lazy(() => import(/*webpackChunkName:"thingssystem"*/"../ThingsSystem"))
 const LogPage = lazy(() => import(/*webpackChunkName:"logpage"*/"../LogPage"))
+const FishPage = lazy(() => import(/*webpackChunkName:"thingssystem"*/"../Fish"))
+
 const Store = store
 
 export default function App() {
@@ -30,6 +32,7 @@ export default function App() {
             <Route path={GAME_MAP_PAGE} component={GameMap} />
             <Route path={THING_SYSTEM_PAGE} component={ThingsSystem} />
             <Route path={LOG_PAGE} component={LogPage} />
+            <Route path={FISH_PAGE} component={FishPage} />
             <Redirect from="" to={HOME_PAGE} />
           </Switch>
         </Suspense>

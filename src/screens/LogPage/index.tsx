@@ -1,6 +1,6 @@
 import * as React from "react"
 import './index.less'
-import CPage from "@/components/Page"
+import CPage from "@/components/CPage"
 import ConnectStore from "@/components/ConnectStore"
 
 import bg from "../../assets/images/log/bg.png"

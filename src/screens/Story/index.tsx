@@ -1,16 +1,14 @@
 import * as React from "react"
 import "./index.less"
 import ConnectStore from "@/components/ConnectStore"
-
+import CPage from "@/components/CPage"
+import bg from "../../assets/images/things/bg.png"
+import CElement from "@/components/Element"
 function Story() {
   return (
-    <div className="page">
-      <div className="story-page">
-        <div className="story-container">
-          I AM Story PAGE
-        </div>
-      </div>
-    </div>
+    <CPage bg={bg} >
+      
+    </CPage>
   )
 }
 

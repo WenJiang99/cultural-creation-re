@@ -1,0 +1,54 @@
+.element-root {
+  width: 100%;
+  height: 100%;
+
+  .element-container {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+@keyframes move-x-animation {
+  from {
+    left: -300px;
+  }
+
+  to {
+    left: 1500px;
+    // transition: all;
+    // transition-duration: 0ms;
+    // transform: rotateY(180deg);
+  }
+}
+
+@keyframes move-y-animation {
+  from {
+    top: 0;
+  }
+
+  to {
+    bottom: left;
+
+
+  }
+}
+
+.move-x {
+  animation-name: move-x-animation;
+  // animation-duration: 10000ms;
+  animation-iteration-count: infinite;
+  // animation-timing-function: linear;
+  animation-direction: normal;
+}
+
+.move-x-reverse {
+  animation-name: move-x-animation;
+  // animation-duration: 10000ms;
+  animation-iteration-count: infinite;
+  // animation-timing-function: linear;
+  animation-direction: reverse;
+}
+
+.clicked-gone {
+  display: none;
+}

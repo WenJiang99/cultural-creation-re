@@ -1,7 +1,7 @@
 import * as React from "react"
 import "./index.less"
 import ConnectStore from "@/components/ConnectStore"
-import CPage from "@/components/Page"
+import CPage from "@/components/CPage"
 import storyBg from "@/assets/images/home/storyBg.png"
 import Background from "@/components/Background"
 import buttonBg from "@/assets/images/buttonBg.png"
