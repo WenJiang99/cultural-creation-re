@@ -66,28 +66,138 @@ export const NODE_LIST: INodeType[] = [
     ]
   },
   {
-    x: 905,
-    y: 628,
-    name: "汝城"
+    x: 912,
+    y: 632,
+    name: "汝城",
+    roadFlagPoint: [
+      {
+        startPoint: {
+          x: 947,
+          y: 627,
+        },
+        endPoint: {
+          x: 928,
+          y: 623
+        }
+      },
+      {
+        startPoint: {
+          x: 928,
+          y: 623
+        },
+        endPoint: {
+          x: 912,
+          y: 622
+        }
+      }
+    ]
   },
   {
     x: 857,
     y: 632,
-    name: "彬县"
+    name: "彬县",
+    roadFlagPoint: [
+      {
+        startPoint: {
+          x: 912,
+          y: 622
+        },
+        endPoint: {
+          x: 892,
+          y: 635
+        }
+      },
+      {
+        startPoint: {
+          x: 892,
+          y: 635
+        },
+        endPoint: {
+          x: 857,
+          y: 632,
+        }
+      }
+    ]
   },
   {
     x: 780,
     y: 625,
-    name: "兴安"
+    name: "兴安",
+    roadFlagPoint: [
+      {
+        startPoint: {
+          x: 857,
+          y: 632,
+        },
+        endPoint: {
+          x: 815,
+          y: 638
+        }
+      },
+      {
+        startPoint: {
+          x: 815,
+          y: 638
+        },
+        endPoint: {
+          x: 780,
+          y: 625,
+        }
+      }
+    ]
   },
   {
     x: 707,
-    y: 591,
-    name: "通道芙蓉镇"
+    y: 581,
+    name: "通道芙蓉镇",
+    roadFlagPoint: [
+      {
+        startPoint: {
+          x: 780,
+          y: 625,
+        },
+        endPoint: {
+          x: 748,
+          y: 609
+        }
+      },
+      {
+        startPoint: {
+          x: 748,
+          y: 609
+        },
+        endPoint: {
+          x: 707,
+          y: 585,
+        }
+      }
+    ]
   },
   {
-    x: 666,
+    x: 664,
     y: 576,
-    name: "黎平"
+    name: "黎平",
+    roadFlagPoint: [
+      {
+        startPoint: {
+          x: 707,
+          y: 585,
+        },
+        endPoint: {
+          x: 685,
+          y: 588
+        }
+      },
+      {
+        startPoint: {
+          x: 685,
+          y: 588
+        },
+        endPoint: {
+          x: 664,
+          y: 576,
+        }
+      }
+    ]
   },
 ]

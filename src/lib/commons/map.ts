@@ -1,4 +1,5 @@
 import { IPointType, INodeType } from "@/interfaces/map"
+import { OFFSET_X, OFFSET_Y } from "../constant/map"
 
 const INIT_STEP: number = 2
 const INIT_COUNT: number = 30
@@ -17,24 +18,19 @@ export function createLinePoints(p1: IPointType, p2: IPointType, step = INIT_STE
   if (dx === 0) { // 斜率不存在
     const sign = Math.sign(dy)// 步长乘上正负号
     step = step * sign
-    while (1) {
-      currentPoint = {
+    const _yList = createVector(p1.y, p2.y, step)
+    _yList.forEach(item => {
+      target.push({
         x: p1.x,
-        y: p1.y + i * step
-      }
-      if (isInThresholdRange(currentPoint, p2)) {
-        break
-      } else {
-        target.push(currentPoint)
-      }
-      i++
-    }
+        y: item
+      })
+    })
   } else {
     const sign = Math.sign(dx)// 步长乘上正负号
     step = step * sign
     const k = dy / dx  // 斜率
     const b = p1.y - k * p1.x // 截距
-    const _xList = createX(p1.x, p2.x, step)
+    const _xList = createVector(p1.x, p2.x, step)
     _xList.forEach(item => {
       target.push({
         x: item,
@@ -52,7 +48,10 @@ export function isInThresholdRange(p1: IPointType, p2: IPointType) {
 export const toPow_2 = (x: number) => Math.pow(x, 2)
 
 
-export function createX(start: number, end: number, step: number) {
+export function createVector(start: number, end: number, step: number) {
   const count = Math.round(Math.abs((end - start) / step))
   return Array(count).fill(0).map((_item, index) => start + index * step)
 }
+
+export const useX = (x: number): number => x - OFFSET_X
+export const useY = (y: number): number => y - OFFSET_Y

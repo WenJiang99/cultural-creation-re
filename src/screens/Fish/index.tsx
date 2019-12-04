@@ -2,7 +2,7 @@ import * as React from "react"
 
 import "./index.less"
 import CPage from "@/components/CPage"
-import CElement from "@/components/Element"
+import CElement from "@/components/CElement"
 import bg from "../../assets/images/game/fish/bg.jpg"
 import fishLeftPic from "../../assets/images/game/fish/fish-left.png"
 import fishRightPic from "../../assets/images/game/fish/fish-right.png"
