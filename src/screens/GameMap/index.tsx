@@ -14,7 +14,7 @@ import starPic from "../../assets/images/map/star.png"
 import { NODE_LIST } from "@/lib/data/map"
 import { createLinePoints, useX, useY, canMove } from "@/lib/commons/map"
 import { IPointType } from "@/interfaces/map"
-import { DELAY_TIME, STAR_WIDTH, STAR_HEIGHT, OFFSET_X, OFFSET_Y, CAN_GO, NOT_GO_BACK, NOT_GO_BACK_TIP, NOT_REACH, NOT_REACH_TIP } from "@/lib/constant/map"
+import { DELAY_TIME, STAR_WIDTH, STAR_HEIGHT, OFFSET_X, OFFSET_Y, CAN_GO, NOT_GO_BACK, NOT_GO_BACK_TIP, NOT_REACH, NOT_REACH_TIP, INIT_NODE_INDEX } from "@/lib/constant/map"
 import clickBg from "../../assets/images/map/clickBg.png"
 import { message } from "antd"
 import { useDispatch } from "react-redux"
@@ -35,7 +35,7 @@ function GameMap({ soldier, node }: IPageBaseProps) {
   const history = useHistory()
   const dispatch = useDispatch()
   const [pointIndex, setPointIndex] = React.useState(INIT_POINT)
-  const [_nodeIndex, setNodeIndex] = React.useState(START_NODE)
+  const [_nodeIndex, setNodeIndex] = React.useState(node.nodeIndex)
   const [isMoving, setMoving] = React.useState(false)
 
   const currentNode = NODE_LIST[_nodeIndex]
