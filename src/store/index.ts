@@ -8,7 +8,7 @@ import { INIT_NODE_INDEX } from "@/lib/constant/map";
 import { setNode } from "./action/node";
 
 export const INIT_STATE :ReduxStateType= {
-    soldier: RED_CENTER,
+    soldier: null,
     node: INIT_NODE_INDEX
 }
 

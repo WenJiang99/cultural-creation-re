@@ -44,6 +44,10 @@ function GameMap({ soldier, node }: IPageBaseProps) {
   const currentNode = NODE_LIST[_nodeIndex]
   let isCanGo = CAN_GO
 
+  function saveIndex() {
+    dispatch(setNode(_nodeIndex))
+  }
+
   React.useEffect(() => {
 
     if (isMoving && pointIndex < _roadPointList.length - 1) {
@@ -71,7 +75,7 @@ function GameMap({ soldier, node }: IPageBaseProps) {
   }, [_nodeIndex])
 
   return (
-    <CPage bg={mapBg}>
+    <CPage bg={mapBg} onGoHome={saveIndex} onGoForward={saveIndex} onGoBack={saveIndex}>
       <div className="game-map" onClick={(e) => {
         console.log(e.pageX, e.pageY) // 坐标踩点  TODO: 生产环境去掉log
       }}>
@@ -129,13 +133,13 @@ function GameMap({ soldier, node }: IPageBaseProps) {
         <div className="game-menu">
           <div className="game-menu-item c-use-background c-clickable-item" onClick={() => {
             setMoving(false)
-            dispatch(setNode(_nodeIndex))
+            saveIndex()
             history.push(LOG_PAGE)
           }}>
             <Background img={logPic} />
           </div>
           <div className="game-menu-item c-use-background c-clickable-item" onClick={() => {
-            dispatch(setNode(_nodeIndex))
+            saveIndex()
             setMoving(false)
             history.push(THING_SYSTEM_PAGE)
           }}>

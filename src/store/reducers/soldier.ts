@@ -6,7 +6,7 @@ export type ISoldierTypeState = {
 }
 
 const INIT_STATE = {
-  soldierType: RED_CENTER
+  soldierType: null
 }
 
 export function soldierReducer(state = INIT_STATE, action: IActionType) {

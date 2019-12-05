@@ -2,20 +2,35 @@ import * as React from 'react'
 import './index.less'
 import { RouteComponentProps, useHistory } from 'react-router'
 import { Button, Icon } from 'antd'
-import { PointType } from '../../lib/commons/map'
 import { MAX_Z_INDEX } from '../../lib/commons/background'
 import { HOME_PAGE } from '@/lib/constant/router_path'
+import { IPointType } from '@/interfaces/map'
 
 
-export default function PageMenuButton() {
+
+type Props = {
+  onGoBack?: () => any
+  onGoHome?: () => any
+  onGoForward?: () => any
+}
+export default function PageMenuButton({ onGoBack, onGoForward, onGoHome }: Props) {
   const history = useHistory()
 
-  const BOUNDARY_POINT: PointType = {
+  function handleGoBack() {
+    onGoBack && onGoBack()
+  }
+  function handleGoHome() {
+    onGoHome && onGoHome()
+  }
+  function handleGoForward() {
+    onGoForward && onGoForward()
+  }
+  const BOUNDARY_POINT: IPointType = {
     x: window.innerWidth * 0.85,
     y: window.innerHeight * 0.85
   }
 
-  const INIT_POSITION: PointType = {
+  const INIT_POSITION: IPointType = {
     x: window.innerWidth / 2,
     y: 10
   }
@@ -70,17 +85,27 @@ export default function PageMenuButton() {
         showButton ? <div className="button-list c-row-center">
 
           <div className="button-item">
-            <Button onClick={() => history.goBack()}>
+            <Button onClick={() => {
+              handleGoBack()
+              history.goBack()
+            }}>
               <Icon type='double-left'></Icon>
             </Button>
           </div>
           <div className="button-item">
-            <Button onClick={() => history.push(HOME_PAGE)}>
+            <Button onClick={() => {
+              handleGoHome()
+              history.push(HOME_PAGE)
+            }
+            }>
               <Icon type='home'></Icon>
             </Button>
           </div>
           <div className="button-item">
-            <Button onClick={() => history.goForward()}>
+            <Button onClick={() => {
+              handleGoForward()
+              history.goForward()
+            }}>
               <Icon type='double-right'></Icon>
             </Button>
           </div>
