@@ -1,5 +1,5 @@
 import { IPointType, INodeType } from "@/interfaces/map"
-import { OFFSET_X, OFFSET_Y } from "../constant/map"
+import { OFFSET_X, OFFSET_Y, STAR_WIDTH, STAR_HEIGHT, INIT_X, INIT_Y, NOT_GO_BACK, NOT_REACH, CAN_GO } from "../constant/map"
 
 const INIT_STEP: number = 2
 const INIT_COUNT: number = 30
@@ -53,5 +53,18 @@ export function createVector(start: number, end: number, step: number) {
   return Array(count).fill(0).map((_item, index) => start + index * step)
 }
 
-export const useX = (x: number): number => x - OFFSET_X
-export const useY = (y: number): number => y - OFFSET_Y
+
+export const useX = (x: number, width: number = STAR_WIDTH): number => x - (width / 2 + INIT_X)
+export const useY = (y: number, height: number = STAR_HEIGHT): number => y - (height / 2 + INIT_Y)
+
+
+export function canMove(current: number, dst: number): number {
+  if (current > dst) {
+    return NOT_GO_BACK
+  } else if (dst - current > 1) {
+    return NOT_REACH
+  } else {
+    return CAN_GO
+  }
+
+}

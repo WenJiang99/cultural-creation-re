@@ -1,15 +1,18 @@
 import { INodeType } from "@/interfaces/map";
+import { BIG_NODE_TAG, SMALL_NODE_TAG } from "../constant/map";
 
 export const NODE_LIST: INodeType[] = [
   {
     x: 1009,
     y: 603,
-    name: "瑞金"
+    name: "瑞金",
+    nodeFlagSize: BIG_NODE_TAG
   },
   {
     x: 947,
-    y: 627,
+    y: 625,
     name: "赣县",
+    nodeFlagSize: SMALL_NODE_TAG,
     roadPoints: [
       {
         x: 998,
@@ -67,8 +70,9 @@ export const NODE_LIST: INodeType[] = [
   },
   {
     x: 912,
-    y: 632,
+    y: 625,
     name: "汝城",
+    nodeFlagSize: SMALL_NODE_TAG,
     roadFlagPoint: [
       {
         startPoint: {
@@ -93,9 +97,10 @@ export const NODE_LIST: INodeType[] = [
     ]
   },
   {
-    x: 857,
-    y: 632,
+    x: 863,
+    y: 629,
     name: "彬县",
+    nodeFlagSize: SMALL_NODE_TAG,
     roadFlagPoint: [
       {
         startPoint: {
@@ -123,6 +128,7 @@ export const NODE_LIST: INodeType[] = [
     x: 780,
     y: 625,
     name: "兴安",
+    nodeFlagSize: SMALL_NODE_TAG,
     roadFlagPoint: [
       {
         startPoint: {
@@ -148,8 +154,9 @@ export const NODE_LIST: INodeType[] = [
   },
   {
     x: 707,
-    y: 581,
+    y: 586,
     name: "通道芙蓉镇",
+    nodeFlagSize: BIG_NODE_TAG,
     roadFlagPoint: [
       {
         startPoint: {
@@ -177,6 +184,7 @@ export const NODE_LIST: INodeType[] = [
     x: 664,
     y: 576,
     name: "黎平",
+    nodeFlagSize: BIG_NODE_TAG,
     roadFlagPoint: [
       {
         startPoint: {

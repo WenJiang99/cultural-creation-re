@@ -12,30 +12,39 @@ import { useHistory } from "react-router"
 import { THING_SYSTEM_PAGE, LOG_PAGE } from "@/lib/constant/router_path"
 import starPic from "../../assets/images/map/star.png"
 import { NODE_LIST } from "@/lib/data/map"
-import { createLinePoints, useX, useY } from "@/lib/commons/map"
+import { createLinePoints, useX, useY, canMove } from "@/lib/commons/map"
 import { IPointType } from "@/interfaces/map"
-import { DELAY_TIME, STAR_WIDTH, STAR_HEIGHT, OFFSET_X, OFFSET_Y } from "@/lib/constant/map"
+import { DELAY_TIME, STAR_WIDTH, STAR_HEIGHT, OFFSET_X, OFFSET_Y, CAN_GO, NOT_GO_BACK, NOT_GO_BACK_TIP, NOT_REACH, NOT_REACH_TIP } from "@/lib/constant/map"
 import clickBg from "../../assets/images/map/clickBg.png"
+import { message } from "antd"
 
-// TODO: 位置、物资
+// TODO:物资
 
 
 const timerList = []
 
 const START_NODE = 0
 
+const INIT_POINT = 0
+
 let _roadPointList: IPointType[] = []
 
 function GameMap({ soldierType }: IPageBaseProps) {
   const history = useHistory()
-  const [pointIndex, setPointIndex] = React.useState(0)
+  const [pointIndex, setPointIndex] = React.useState(INIT_POINT)
   const [nodeIndex, setNodeIndex] = React.useState(START_NODE)
+  const [isMoving, setMoving] = React.useState(false)
 
   const currentNode = NODE_LIST[nodeIndex]
+  let isCanGo = CAN_GO
+  let moveMessage = ""
 
   React.useEffect(() => {
     if (pointIndex < _roadPointList.length - 1) {
+      setMoving(true)
       timerList.push(setTimeout(() => setPointIndex(pointIndex + 1), DELAY_TIME))
+    } else {
+      setMoving(false)
     }
     if (timerList.length >= 2) {
       clearTimeout(timerList.shift())
@@ -43,7 +52,10 @@ function GameMap({ soldierType }: IPageBaseProps) {
   }, [pointIndex])
 
   React.useEffect(() => {
+    _roadPointList = []  // 清空原来的路径坐标
     if (nodeIndex !== START_NODE) {
+      setMoving(true)
+      setPointIndex(INIT_POINT + 1)  // 触发动画
       currentNode.roadFlagPoint.forEach((item) => {
         _roadPointList = [..._roadPointList, ...createLinePoints(item.startPoint, item.endPoint)]
       })
@@ -53,7 +65,7 @@ function GameMap({ soldierType }: IPageBaseProps) {
   return (
     <CPage bg={mapBg}>
       <div className="game-map" onClick={(e) => {
-        console.log(e.pageX, e.pageY)
+        console.log(e.pageX, e.pageY) // 坐标踩点  TODO: 生产环境去掉log
       }}>
         {
           NODE_LIST.map((item, index) =>
@@ -61,14 +73,28 @@ function GameMap({ soldierType }: IPageBaseProps) {
               key={item.name}
               style={{
                 position: 'absolute',
-                left: useX(item.x) + 'px',
-                top: useY(item.y) + 'px'
+                left: useX(item.x, item.nodeFlagSize) + 'px',
+                top: useY(item.y, item.nodeFlagSize) + 'px'
               }}
               onClick={() => {
-                setNodeIndex(index)
+                isCanGo = canMove(nodeIndex, index)
+                if (isCanGo > 0) {
+                  setNodeIndex(index)
+                } else {
+                  if (isCanGo === NOT_GO_BACK) {
+                    moveMessage = NOT_GO_BACK_TIP
+                  } else if (isCanGo === NOT_REACH) {
+                    moveMessage = NOT_REACH_TIP
+                  }
+                  message.warn(moveMessage)
+                }
               }}
             >
-              <div className='node-click-flag c-use-background c-clickable-item'
+              <div className='c-use-background c-clickable-item'
+                style={{
+                  width: item.nodeFlagSize + 'px',
+                  height: item.nodeFlagSize + 'px'
+                }}
               >
                 <Background img={clickBg} />
               </div>
@@ -78,8 +104,8 @@ function GameMap({ soldierType }: IPageBaseProps) {
         }
         <div className=" " style={{
           position: "absolute",
-          // left: useX(_roadPointList[pointIndex].x) + 'px',
-          // top: useY(_roadPointList[pointIndex].y) + 'px'
+          left: (isMoving ? useX(_roadPointList[pointIndex].x) : useX(currentNode.x)) + 'px',
+          top: (isMoving ? useY(_roadPointList[pointIndex].y) : useY(currentNode.y)) + 'px'
         }}>
           <div className=" c-use-background" style={{
             width: STAR_WIDTH + "px",

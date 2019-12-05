@@ -4,6 +4,7 @@ export type INodeType = {
   name?: string
   roadPoints?: IPointType[]
   roadFlagPoint?: IRoadFlagType[]  // 两个地图节点之间的路径曲线的直线折点
+  nodeFlagSize?: number
 }
 
 export type IPointType = {
