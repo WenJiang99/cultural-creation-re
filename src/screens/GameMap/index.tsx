@@ -31,7 +31,7 @@ const INIT_POINT = 0
 
 let _roadPointList: IPointType[] = []
 
-function GameMap({ soldierType, nodeIndex }: IPageBaseProps) {
+function GameMap({ soldier, node }: IPageBaseProps) {
   const history = useHistory()
   const dispatch = useDispatch()
   const [pointIndex, setPointIndex] = React.useState(INIT_POINT)
@@ -40,7 +40,8 @@ function GameMap({ soldierType, nodeIndex }: IPageBaseProps) {
 
   const currentNode = NODE_LIST[_nodeIndex]
   let isCanGo = CAN_GO
-  console.log(nodeIndex)
+  console.log(soldier,'soldier')
+  console.log(node,'nodeIndex')
 
   React.useEffect(() => {
     if (isMoving && pointIndex < _roadPointList.length - 1) {

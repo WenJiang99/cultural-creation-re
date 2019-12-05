@@ -1,8 +1,8 @@
 import { ISoldierInfo } from "./soldier";
 
 export type IMapedState = {
-    soldierType: string
-    nodeIndex:number
+    soldier: string
+    node:number
 }
 
 export type IMapedDispatch = {

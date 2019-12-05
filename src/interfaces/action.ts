@@ -8,5 +8,5 @@ export type INodeActionType = {
 } & IActionType
 
 export type INodeStateType = {
-  nodeIndex: number
+  node: number
 }
