@@ -19,8 +19,9 @@ import clickBg from "../../assets/images/map/clickBg.png"
 import { message } from "antd"
 import { useDispatch } from "react-redux"
 import { setNode } from "@/store/action/node"
+import { getStore } from "@/store"
 
-// TODO:物资
+// TODO:物资计算策略
 
 
 const timerList = []
@@ -38,12 +39,12 @@ function GameMap({ soldier, node }: IPageBaseProps) {
   const [_nodeIndex, setNodeIndex] = React.useState(node.nodeIndex)
   const [isMoving, setMoving] = React.useState(false)
 
+
   const currentNode = NODE_LIST[_nodeIndex]
   let isCanGo = CAN_GO
-  console.log(soldier,'soldier')
-  console.log(node,'nodeIndex')
 
   React.useEffect(() => {
+
     if (isMoving && pointIndex < _roadPointList.length - 1) {
       setMoving(true)
       timerList.push(setTimeout(() => setPointIndex(pointIndex + 1), DELAY_TIME))
@@ -58,7 +59,7 @@ function GameMap({ soldier, node }: IPageBaseProps) {
 
   React.useEffect(() => {
     _roadPointList = []  // 清空原来的路径坐标
-    if (_nodeIndex !== START_NODE) {
+    if (_nodeIndex !== START_NODE && _nodeIndex !== node.nodeIndex) {  // 当前位置不是第一个节点、从其他页面回到地图页面时候都不触发动画
       setMoving(true)
       currentNode.roadFlagPoint.forEach((item) => {
         _roadPointList = [..._roadPointList, ...createLinePoints(item.startPoint, item.endPoint)]
@@ -126,6 +127,7 @@ function GameMap({ soldier, node }: IPageBaseProps) {
         </div>
         <div className="game-menu">
           <div className="game-menu-item c-use-background c-clickable-item" onClick={() => {
+            setMoving(false)
             dispatch(setNode(_nodeIndex))
             history.push(LOG_PAGE)
           }}>
@@ -133,6 +135,7 @@ function GameMap({ soldier, node }: IPageBaseProps) {
           </div>
           <div className="game-menu-item c-use-background c-clickable-item" onClick={() => {
             dispatch(setNode(_nodeIndex))
+            setMoving(false)
             history.push(THING_SYSTEM_PAGE)
           }}>
             <Background img={thingPic} />
