@@ -23,6 +23,7 @@ import { getStore } from "@/store"
 
 // TODO:物资计算策略
 
+console.log(document.body.getBoundingClientRect())
 
 const timerList = []
 
