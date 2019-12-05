@@ -22,3 +22,5 @@ export const SOLDIER_DATA: ISoldierType = {
     name: "红二十五军"
   }
 }
+
+export const NOT_SELECT_TIP = '请先选择一个军团'

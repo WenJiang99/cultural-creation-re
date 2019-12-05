@@ -4,7 +4,7 @@ export type CounterStateType = {
   count: number
 }
 
-export const INIT_STATE: CounterStateType = {
+ const INIT_STATE: CounterStateType = {
   count: 10
 }
 export function counterReducer(state = INIT_STATE, action: ActionType) {

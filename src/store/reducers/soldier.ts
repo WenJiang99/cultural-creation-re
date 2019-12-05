@@ -1,15 +1,14 @@
 import { IActionType } from "@/interfaces/action";
 import { RED_CENTER, RED_2, RED_4, RED_25 } from "@/lib/constant/soldier";
+import { INIT_STATE } from "..";
 
 
 export type ISoldierTypeState = {
   soldierType: string
 }
-const INIT_STATE: ISoldierTypeState = {
-  soldierType: null
-}
 
-export function setSoldierType(state = INIT_STATE, action: IActionType) {
+
+export function soldierReducer(state = INIT_STATE, action: IActionType) {
   switch (action.type) {
     case RED_CENTER: {
       alert(action.type)

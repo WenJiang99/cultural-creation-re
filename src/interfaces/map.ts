@@ -16,3 +16,4 @@ export type IRoadFlagType = {
   startPoint: IPointType
   endPoint: IPointType
 }
+

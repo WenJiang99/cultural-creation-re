@@ -17,6 +17,8 @@ import { IPointType } from "@/interfaces/map"
 import { DELAY_TIME, STAR_WIDTH, STAR_HEIGHT, OFFSET_X, OFFSET_Y, CAN_GO, NOT_GO_BACK, NOT_GO_BACK_TIP, NOT_REACH, NOT_REACH_TIP } from "@/lib/constant/map"
 import clickBg from "../../assets/images/map/clickBg.png"
 import { message } from "antd"
+import { useDispatch } from "react-redux"
+import { setNode } from "@/store/action/node"
 
 // TODO:物资
 
@@ -29,38 +31,41 @@ const INIT_POINT = 0
 
 let _roadPointList: IPointType[] = []
 
-function GameMap({ soldierType }: IPageBaseProps) {
+function GameMap({ soldierType, nodeIndex }: IPageBaseProps) {
   const history = useHistory()
+  const dispatch = useDispatch()
   const [pointIndex, setPointIndex] = React.useState(INIT_POINT)
-  const [nodeIndex, setNodeIndex] = React.useState(START_NODE)
+  const [_nodeIndex, setNodeIndex] = React.useState(START_NODE)
   const [isMoving, setMoving] = React.useState(false)
 
-  const currentNode = NODE_LIST[nodeIndex]
+  const currentNode = NODE_LIST[_nodeIndex]
   let isCanGo = CAN_GO
-  let moveMessage = ""
+  console.log(nodeIndex)
 
   React.useEffect(() => {
-    if (pointIndex < _roadPointList.length - 1) {
+    if (isMoving && pointIndex < _roadPointList.length - 1) {
       setMoving(true)
       timerList.push(setTimeout(() => setPointIndex(pointIndex + 1), DELAY_TIME))
-    } else {
+    } else {  // 已经走完了当前的路段到达了目标节点
       setMoving(false)
+      setPointIndex(INIT_POINT)
     }
     if (timerList.length >= 2) {
       clearTimeout(timerList.shift())
     }
-  }, [pointIndex])
+  })
 
   React.useEffect(() => {
     _roadPointList = []  // 清空原来的路径坐标
-    if (nodeIndex !== START_NODE) {
+    if (_nodeIndex !== START_NODE) {
       setMoving(true)
-      setPointIndex(INIT_POINT + 1)  // 触发动画
       currentNode.roadFlagPoint.forEach((item) => {
         _roadPointList = [..._roadPointList, ...createLinePoints(item.startPoint, item.endPoint)]
       })
+      setPointIndex(INIT_POINT + 1)  // 触发动画
+
     }
-  }, [nodeIndex])
+  }, [_nodeIndex])
 
   return (
     <CPage bg={mapBg}>
@@ -77,16 +82,15 @@ function GameMap({ soldierType }: IPageBaseProps) {
                 top: useY(item.y, item.nodeFlagSize) + 'px'
               }}
               onClick={() => {
-                isCanGo = canMove(nodeIndex, index)
+                isCanGo = canMove(_nodeIndex, index)
                 if (isCanGo > 0) {
                   setNodeIndex(index)
                 } else {
                   if (isCanGo === NOT_GO_BACK) {
-                    moveMessage = NOT_GO_BACK_TIP
+                    message.warn(NOT_GO_BACK_TIP)
                   } else if (isCanGo === NOT_REACH) {
-                    moveMessage = NOT_REACH_TIP
+                    message.warn(NOT_REACH_TIP)
                   }
-                  message.warn(moveMessage)
                 }
               }}
             >
@@ -121,11 +125,13 @@ function GameMap({ soldierType }: IPageBaseProps) {
         </div>
         <div className="game-menu">
           <div className="game-menu-item c-use-background c-clickable-item" onClick={() => {
+            dispatch(setNode(_nodeIndex))
             history.push(LOG_PAGE)
           }}>
             <Background img={logPic} />
           </div>
           <div className="game-menu-item c-use-background c-clickable-item" onClick={() => {
+            dispatch(setNode(_nodeIndex))
             history.push(THING_SYSTEM_PAGE)
           }}>
             <Background img={thingPic} />

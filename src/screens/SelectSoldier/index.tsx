@@ -10,11 +10,11 @@ import red_25 from "../../assets/images/soldier/red-25.png"
 import submitPic from "../../assets/images/soldier/submit.png"
 import Background from "@/components/Background"
 import { IPageBaseProps } from "@/interfaces/page"
-import { RED_CENTER, RED_2, RED_4, RED_25 } from "@/lib/constant/soldier"
+import { RED_CENTER, RED_2, RED_4, RED_25, NOT_SELECT_TIP } from "@/lib/constant/soldier"
 import { useHistory } from "react-router"
 import { HOME_PAGE, BEFORE_GAME_PAGE, GAME_MAP_PAGE } from "@/lib/constant/router_path"
 import { useDispatch } from "react-redux"
-import { Modal } from "antd"
+import { Modal, message } from "antd"
 
 const SOLDIER_LIST = [
   {
@@ -37,29 +37,19 @@ type Props = {
 
 } & IPageBaseProps
 
-let _type;
+let _type
+
 function SelectSoldier({ soldierType, setSoldierType }: Props) {
 
   const history = useHistory()
   const dispatch = useDispatch()
 
   const [currentIndex, setIndex] = React.useState(INIT_INDEX)
-  const [showModal, setShow] = React.useState(false)
 
   return (
     <CPage bg={bg}>
       <div className="select-soldier">
         <div className="soldier-container">
-          <Modal
-            visible={showModal}
-            keyboard
-            width={260}
-            title='提示'
-            onOk={() => setShow(false)}
-            onCancel={() => setShow(false)}
-          >
-            请先选择军团
-          </Modal>
           {
             SOLDIER_LIST.map((item, index) =>
               <div className={"soldier-item c-use-background " + (index === currentIndex ? 'selected-item' : 'clickable-item')}
@@ -67,7 +57,6 @@ function SelectSoldier({ soldierType, setSoldierType }: Props) {
                 onClick={() => {
                   setIndex(index)
                   _type = item.type
-                  setShow(false)
 
                 }}
               >
@@ -79,7 +68,10 @@ function SelectSoldier({ soldierType, setSoldierType }: Props) {
         <div className="submit-area">
           <div className="submit-button c-use-background c-clickable-item" onClick={() => {
             if (currentIndex === INIT_INDEX) {
-              setShow(true)
+              message.warning({
+                content: NOT_SELECT_TIP,
+                duration: 3.5
+              })
             } else {
               dispatch({ type: _type })
               history.push(GAME_MAP_PAGE)

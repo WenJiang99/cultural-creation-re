@@ -8,7 +8,8 @@ import { IMapedDispatch, IMapedState } from "@/interfaces/redux"
 
 const mapStateToProps = (state: ReduxStateType) => {
   return {
-    soldierType: state.soldierType
+    soldierType: state.soldierType,
+    nodeIndex: state.nodeIndex
   }
 }
 const mapDispatchToProps = (dispatch) => {

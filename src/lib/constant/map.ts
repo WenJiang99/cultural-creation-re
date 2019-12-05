@@ -19,3 +19,6 @@ export const CAN_GO = 1
 
 export const NOT_GO_BACK_TIP = '革命尚未成功，我辈绝不退步'
 export const NOT_REACH_TIP = '当前关卡还没无法开启'
+
+
+export const INIT_NODE_INDEX = 0
