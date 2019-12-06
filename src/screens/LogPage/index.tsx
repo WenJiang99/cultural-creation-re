@@ -7,7 +7,7 @@ import bg from "../../assets/images/log/bg.png"
 import tagBg from "../../assets/images/log/tagBg.png"
 import { LOG_DATA } from "@/lib/data/log"
 import Background from "@/components/Background"
-import { LOG_PAGE, HOME_PAGE, GAME_MAP_PAGE } from "@/lib/constant/router_path"
+import { LOG_PAGE, HOME_PAGE, GAME_MAP_PAGE, STORY_GAME_PAGE } from "@/lib/constant/router_path"
 import { IPageBaseProps } from "@/interfaces/page"
 import { useHistory } from "react-router"
 import closePic from "../../assets/images/log/close.png"
@@ -25,7 +25,7 @@ function LogPage({ log, soldier }: IPageBaseProps) {
       <div className="log-page">
         <div className="log-close">
           <div className="log-close-button c-use-background c-clickable-item" onClick={() => {
-            history.replace(GAME_MAP_PAGE)
+            history.replace(STORY_GAME_PAGE)
           }}>
             <Background img={closePic} />
           </div>

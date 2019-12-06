@@ -7,7 +7,7 @@ import Background from "@/components/Background"
 import buttonBg from "@/assets/images/buttonBg.png"
 import { ENCIRCLE_DATA } from "@/lib/data/encircle"
 import ScrollableArea from "@/components/ScrollableArea"
-import { SELECT_SOLDIER_PAGE } from "@/lib/constant/router_path"
+import { SELECT_SOLDIER_PAGE, GAME_MAP_PAGE, HOME_PAGE } from "@/lib/constant/router_path"
 import { useHistory } from "react-router"
 import { IPageBaseProps } from "@/interfaces/page"
 
@@ -15,8 +15,12 @@ const ITEM_DATA = ["一", "二", "三", "四", "五"]
 const INIT_INDEX = 4
 
 function GameHome({ soldier }: IPageBaseProps) {
-
   const history = useHistory()
+
+  if (!soldier.soldierType) {
+    history.replace(HOME_PAGE)
+  }
+
   const [currentIndex, setIndex] = React.useState(INIT_INDEX)
   // alert(soldierType + '   solider type')
 
@@ -47,7 +51,7 @@ function GameHome({ soldier }: IPageBaseProps) {
 
         </div>
         <div className="skip-story">
-          <div className="skip-button" onClick={() => history.push(SELECT_SOLDIER_PAGE)}>
+          <div className="skip-button" onClick={() => history.push(GAME_MAP_PAGE)}>
             跳过 >>
             </div>
         </div>
