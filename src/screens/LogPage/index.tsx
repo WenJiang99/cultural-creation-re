@@ -19,13 +19,17 @@ function LogPage({ log, soldier }: IPageBaseProps) {
   if (log.count === 0 || !soldier.soldierType) {
     history.replace(HOME_PAGE)
   }
-  const [currentIndex, setIndex] = React.useState(INIT_INDEX)
+  const [currentIndex, setIndex] = React.useState(log.count - 1)
   return (
     <CPage bg={bg}>
       <div className="log-page">
         <div className="log-close">
           <div className="log-close-button c-use-background c-clickable-item" onClick={() => {
-            history.replace(STORY_GAME_PAGE)
+            if (log.count <= 1) {
+              history.replace(STORY_GAME_PAGE)
+            } else {
+              history.replace(GAME_MAP_PAGE)
+            }
           }}>
             <Background img={closePic} />
           </div>

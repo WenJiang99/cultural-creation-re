@@ -16,10 +16,11 @@ import { createLinePoints, useX, useY, canMove } from "@/lib/commons/map"
 import { IPointType } from "@/interfaces/map"
 import { DELAY_TIME, STAR_WIDTH, STAR_HEIGHT, OFFSET_X, OFFSET_Y, CAN_GO, NOT_GO_BACK, NOT_GO_BACK_TIP, NOT_REACH, NOT_REACH_TIP, INIT_NODE_INDEX } from "@/lib/constant/map"
 import clickBg from "../../assets/images/map/clickBg.png"
-import { message } from "antd"
+import { message, notification, Button, Icon } from "antd"
 import { useDispatch } from "react-redux"
 import { setNode } from "@/store/action/node"
 import { getStore } from "@/store"
+import { show } from "@/store/action/log"
 
 // TODO:物资计算策略
 
@@ -32,6 +33,7 @@ const START_NODE = 0
 const INIT_POINT = 0
 
 let _roadPointList: IPointType[] = []
+let _isFirst = true
 
 function GameMap({ soldier, node, goods }: IPageBaseProps) {
   const history = useHistory()
@@ -47,7 +49,7 @@ function GameMap({ soldier, node, goods }: IPageBaseProps) {
 
   const currentNode = NODE_LIST[_nodeIndex]
   let isCanGo = CAN_GO
-
+  
   function saveIndex() {
     dispatch(setNode(_nodeIndex))
   }
@@ -76,6 +78,31 @@ function GameMap({ soldier, node, goods }: IPageBaseProps) {
       setPointIndex(INIT_POINT + 1)  // 触发动画
 
     }
+    saveIndex()
+    dispatch(show(_nodeIndex + 2))
+    if (node.nodeIndex !== _nodeIndex || _isFirst) {
+      _isFirst = false
+      const key = `open${Date.now()}`
+      notification.open({
+        key: key,
+        message: 'Tips',
+        description: '您的日志有更新啦!',
+        duration: 5,
+        style: {
+          width: '300px',
+          backgroundColor: 'rgba(ff,ff,ff,0.7)'
+        },
+        icon: <Icon type="message" style={{ color: '#108ee9' }} />,
+        btn: (
+          <Button onClick={() => {
+            notification.close(key)
+            history.push(LOG_PAGE)
+          }}>立即去查看</Button>
+        ),
+        onClose: () => { }
+      })
+    }
+
   }, [_nodeIndex])
 
   return (
@@ -95,6 +122,7 @@ function GameMap({ soldier, node, goods }: IPageBaseProps) {
               onClick={() => {
                 isCanGo = canMove(_nodeIndex, index)
                 if (isCanGo > 0) {
+
                   setNodeIndex(index)
                 } else {
                   if (isCanGo === NOT_GO_BACK) {
@@ -137,13 +165,11 @@ function GameMap({ soldier, node, goods }: IPageBaseProps) {
         <div className="game-menu">
           <div className="game-menu-item c-use-background c-clickable-item" onClick={() => {
             setMoving(false)
-            saveIndex()
             history.push(LOG_PAGE)
           }}>
             <Background img={logPic} />
           </div>
           <div className="game-menu-item c-use-background c-clickable-item" onClick={() => {
-            saveIndex()
             setMoving(false)
             history.push(THING_SYSTEM_PAGE)
           }}>
