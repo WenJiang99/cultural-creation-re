@@ -72,11 +72,13 @@ export default function PageMenuButton({ onGoBack, onGoForward, onGoHome }: Prop
         left: position.x,
         zIndex: MAX_Z_INDEX
       }}
+      onMouseEnter={() => setShowButton(true)}
+      onMouseLeave={() => setShowButton(false)}
     >
       <div className="button-opener">
         <Button
           size="large"
-          onClick={() => setShowButton(!showButton)}
+        // onClick={() => setShowButton(!showButton)}
         >
           <Icon type='plus-circle' spin />
         </Button>
