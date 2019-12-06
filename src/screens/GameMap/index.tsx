@@ -9,7 +9,7 @@ import logPic from "../../assets/images/map/log.png"
 import thingPic from "../../assets/images/map/things.png"
 import Background from "@/components/Background"
 import { useHistory } from "react-router"
-import { THING_SYSTEM_PAGE, LOG_PAGE } from "@/lib/constant/router_path"
+import { THING_SYSTEM_PAGE, LOG_PAGE, HOME_PAGE } from "@/lib/constant/router_path"
 import starPic from "../../assets/images/map/star.png"
 import { NODE_LIST } from "@/lib/data/map"
 import { createLinePoints, useX, useY, canMove } from "@/lib/commons/map"
@@ -36,6 +36,10 @@ let _roadPointList: IPointType[] = []
 function GameMap({ soldier, node, goods }: IPageBaseProps) {
   const history = useHistory()
   const dispatch = useDispatch()
+  if (!soldier.soldierType) {
+    history.replace(HOME_PAGE)
+  }
+
   const [pointIndex, setPointIndex] = React.useState(INIT_POINT)
   const [_nodeIndex, setNodeIndex] = React.useState(node.nodeIndex)
   const [isMoving, setMoving] = React.useState(false)

@@ -15,21 +15,21 @@ type Props = {
   bg?: string,
   bgColor?: string
 }
-let _isFinish = false // 时间基准要放到组件外部，防止因为页面渲染而被重置
-let  _NOW = Date.now()
+let _isFinish = true // 时间基准要放到组件外部，防止因为页面渲染而被重置
+let _NOW = Date.now()
 
 export default function CTimer({ time, color, bg, bgColor, onFinish }: Props) {
   const { Countdown } = Statistic
   const format = "ss:SSS"
   let deadline
-  if(_isFinish){
-     deadline= Date.now()+time
+  if (_isFinish) {
+    deadline = Date.now() + time
     _NOW = Date.now()
     _isFinish = false
-  }else {
-    deadline = (_NOW +time)
+  } else {
+    deadline = (_NOW + time)
   }
-  
+
 
   function handleFinish() {
     _isFinish = true
