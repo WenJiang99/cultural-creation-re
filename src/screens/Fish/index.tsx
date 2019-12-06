@@ -13,6 +13,8 @@ import { getRandom } from "@/lib/commons/game"
 import Background from "@/components/Background"
 import CGamePage from "@/components/CGamePage"
 import { SECOND } from "@/lib/constant/timer"
+import { GAME_DATA } from "@/lib/data/game"
+import { FISH_GAME } from "@/lib/constant/game"
 
 
 
@@ -61,7 +63,7 @@ function FishPage() {
         type='x'
         point={point}
         pointImg={fishLeftPic}
-        time={10 * SECOND}
+        time={GAME_DATA[FISH_GAME].time}
         onFinish={()=>{
           
         }}

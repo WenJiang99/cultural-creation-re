@@ -8,7 +8,7 @@ import bg from "@/assets/images/home/bg.png"
 import startGamePic from "@/assets/images/home/start-game.png"
 import watchStoryPic from "@/assets/images/home/watch.png"
 import CPage from '@/components/CPage'
-import { BEFORE_GAME_PAGE, STORY_PAGE, GAME_MAP_PAGE } from '@/lib/constant/router_path'
+import { BEFORE_GAME_PAGE, STORY_PAGE, GAME_MAP_PAGE, STORY_GAME_PAGE } from '@/lib/constant/router_path'
 import { IPageBaseProps } from '@/interfaces/page'
 
 type Props = {
@@ -26,7 +26,7 @@ function Home({ soldier }: Props) {
             if (soldier.soldierType) {
               history.push(GAME_MAP_PAGE)
             } else {
-              history.push(BEFORE_GAME_PAGE)
+              history.push(STORY_GAME_PAGE)
             }
           }}>
             <Background img={startGamePic} opacity={1} />

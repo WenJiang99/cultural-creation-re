@@ -14,7 +14,7 @@ import { IPageBaseProps } from "@/interfaces/page"
 const ITEM_DATA = ["一", "二", "三", "四", "五"]
 const INIT_INDEX = 4
 
-function GameHome({ soldierType }: IPageBaseProps) {
+function GameHome({ soldier }: IPageBaseProps) {
 
   const history = useHistory()
   const [currentIndex, setIndex] = React.useState(INIT_INDEX)
@@ -39,7 +39,7 @@ function GameHome({ soldierType }: IPageBaseProps) {
         <div className="story-container">
           {/* <ScrollableArea text={ENCIRCLE_DATA[currentIndex]} width='70%' type='y' />
            */}
-          <div className="story-info-wrapper c-use-scrollable">
+          <div className="story-info-wrapper c-use-scrollable c-auto-line">
             <div className="c-scrollable-wrapper-y">
               {ENCIRCLE_DATA[currentIndex]}
             </div>

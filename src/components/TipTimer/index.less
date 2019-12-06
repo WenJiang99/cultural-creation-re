@@ -1,0 +1,44 @@
+@keyframes timer-animatioin {
+  from {
+    transform: scale(2);
+  }
+  to {
+    transform: scale(0);
+  }
+}
+
+.tip-timer {
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 999;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  .tip {
+    &-area {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      font-size: 3rem;
+
+      &-value {
+        margin: 20px;
+        color: yellow;
+        font-size: 4rem;
+        font-weight: 900;
+        animation-name: timer-animation;
+        animation-duration: 1000ms;
+      }
+    }
+  }
+}
+

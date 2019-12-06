@@ -39,7 +39,7 @@ type Props = {
 
 let _type
 
-function SelectSoldier({ soldierType, setSoldierType }: Props) {
+function SelectSoldier({ }: Props) {
 
   const history = useHistory()
   const dispatch = useDispatch()

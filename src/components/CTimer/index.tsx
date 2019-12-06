@@ -24,6 +24,7 @@ export default function CTimer({ time, color, bg, bgColor, onFinish }: Props) {
 
   function handleFinish() {
     onFinish && onFinish()
+    
   }
   return (
     <div className={"timer " + (bg ? 'c-use-background' : '')}
