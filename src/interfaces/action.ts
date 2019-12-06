@@ -7,6 +7,10 @@ export type INodeActionType = {
   nodeIndex: number
 } & IActionType
 
-export type INodeStateType = {
-  node: number
-}
+
+
+export type IGoodsActionType = {
+  count: number
+} & IActionType
+
+

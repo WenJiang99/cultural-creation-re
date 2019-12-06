@@ -2,14 +2,15 @@ import * as React from "react"
 import { RouterProps } from "react-router"
 import { increase, decrease } from "../../store/action/counter"
 import { connect } from "react-redux"
-import { ReduxStateType } from "../../store"
 import { soldier } from "@/store/action/soldier"
 import { IMapedDispatch, IMapedState } from "@/interfaces/redux"
+import { ReduxStateType } from "@/interfaces/state"
 
 const mapStateToProps = (state: ReduxStateType) => {
   return {
     soldier: state.soldier,
-    node: state.node
+    node: state.node,
+    goods: state.goods
   }
 }
 const mapDispatchToProps = (dispatch) => {

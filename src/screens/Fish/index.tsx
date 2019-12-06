@@ -19,6 +19,9 @@ import CGameResult from "@/components/CGameResult"
 import resBg from "../../assets/images/game/game-res.png"
 import { useHistory } from "react-router"
 import { GAME_MAP_PAGE } from "@/lib/constant/router_path"
+import { IPageBaseProps } from "@/interfaces/page"
+import { useDispatch } from "react-redux"
+import { add } from "@/store/action/goods"
 
 
 function getSpeed() {
@@ -29,7 +32,8 @@ const FISH_COUNT = 30
 const COUNT_ARR = new Array(FISH_COUNT).fill(0)
 const countArr = COUNT_ARR.map((_item, index) => index)
 
-function FishPage() {
+function FishPage({ goods }: IPageBaseProps) {
+  const dispatch = useDispatch()
   const history = useHistory()
   const [point, setPoint] = React.useState(0)
   const [isEnd, setEnd] = React.useState(false)
@@ -44,7 +48,6 @@ function FishPage() {
           ?
           <CGameResult name={FISH_GAME}
             onReplay={() => {
-              setPoint(0)
               setEnd(false)
             }}
             onExit={() => {
@@ -60,8 +63,10 @@ function FishPage() {
             pointImg={fishLeftPic}
             time={GAME_DATA[FISH_GAME].time}
             onFinish={() => {
-              
+              dispatch(add(point))
+              setPoint(0)
               setEnd(true)
+
             }}
           >
             {

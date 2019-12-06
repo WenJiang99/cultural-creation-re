@@ -1,0 +1,1 @@
+export const DEFAULT_GOODS_COUNT = 100

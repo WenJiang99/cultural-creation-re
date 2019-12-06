@@ -33,7 +33,7 @@ const INIT_POINT = 0
 
 let _roadPointList: IPointType[] = []
 
-function GameMap({ soldier, node }: IPageBaseProps) {
+function GameMap({ soldier, node, goods }: IPageBaseProps) {
   const history = useHistory()
   const dispatch = useDispatch()
   const [pointIndex, setPointIndex] = React.useState(INIT_POINT)
@@ -128,7 +128,7 @@ function GameMap({ soldier, node }: IPageBaseProps) {
         </div>
         <div className="tips-area">
           <div className="tips-item">所在位置： {currentNode.name}</div>
-          <div className="tips-item">物质数量： 100</div>
+          <div className="tips-item">物质数量： {goods.count}</div>
         </div>
         <div className="game-menu">
           <div className="game-menu-item c-use-background c-clickable-item" onClick={() => {
