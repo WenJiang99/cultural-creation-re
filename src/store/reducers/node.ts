@@ -1,5 +1,5 @@
 import { INIT_NODE_INDEX } from "@/lib/constant/map";
-import {  IActionType, INodeActionType } from "@/interfaces/action";
+import {  IBaseActionType, INodeActionType } from "@/interfaces/action";
 import { SET_NODE } from "../action/node";
 import { INodeStateType } from "@/interfaces/state";
 

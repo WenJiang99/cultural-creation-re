@@ -73,7 +73,7 @@ export default function CElement({ bg, bgColor, width, height, direction, speed,
     return getRandom(10, 650)
   }
 
-  
+
   return (
     <div
       className={(isShow ? '' : 'clicked-gone')}
@@ -85,7 +85,7 @@ export default function CElement({ bg, bgColor, width, height, direction, speed,
         top: `${getY()}px`,
         left: `${getX()}px`
       }}
-      onClick={() => {
+      onDoubleClick={() => {
         setShow(false)
         handleClick()
       }}

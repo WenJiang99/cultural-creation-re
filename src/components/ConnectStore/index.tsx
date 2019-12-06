@@ -10,7 +10,8 @@ const mapStateToProps = (state: ReduxStateType) => {
   return {
     soldier: state.soldier,
     node: state.node,
-    goods: state.goods
+    goods: state.goods,
+    log: state.log
   }
 }
 const mapDispatchToProps = (dispatch) => {

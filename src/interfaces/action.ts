@@ -1,16 +1,19 @@
-export type IActionType = {
+export type IBaseActionType = {
   type: string,
   text?: string
 }
 
 export type INodeActionType = {
   nodeIndex: number
-} & IActionType
+} & IBaseActionType
 
 
 
 export type IGoodsActionType = {
   count: number
-} & IActionType
+} & IBaseActionType
 
 
+export type ILogActionType = {
+  count: number
+} & IBaseActionType

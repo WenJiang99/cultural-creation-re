@@ -12,9 +12,10 @@ import Background from "@/components/Background"
 import { IPageBaseProps } from "@/interfaces/page"
 import { RED_CENTER, RED_2, RED_4, RED_25, NOT_SELECT_TIP } from "@/lib/constant/soldier"
 import { useHistory } from "react-router"
-import { HOME_PAGE, BEFORE_GAME_PAGE, GAME_MAP_PAGE } from "@/lib/constant/router_path"
+import { HOME_PAGE, BEFORE_GAME_PAGE, GAME_MAP_PAGE, LOG_PAGE } from "@/lib/constant/router_path"
 import { useDispatch } from "react-redux"
 import { Modal, message } from "antd"
+import { show } from "@/store/action/log"
 
 const SOLDIER_LIST = [
   {
@@ -74,7 +75,8 @@ function SelectSoldier({ }: Props) {
               })
             } else {
               dispatch({ type: _type })
-              history.push(GAME_MAP_PAGE)
+              dispatch(show(1))
+              history.push(LOG_PAGE)
             }
           }}>
             <Background img={submitPic} />
