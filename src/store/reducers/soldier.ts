@@ -12,11 +12,9 @@ const INIT_STATE = {
 export function soldierReducer(state = INIT_STATE, action: IActionType) {
   switch (action.type) {
     case RED_CENTER: {
-      alert(action.type)
       return Object.assign({}, state, { soldierType: RED_CENTER })
     }
     case RED_2: {
-      alert(action.type)
       return Object.assign({}, state, { soldierType: RED_2 })
     }
     case RED_4: {

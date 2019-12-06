@@ -32,7 +32,7 @@ function Home({ soldier }: Props) {
             <Background img={startGamePic} opacity={1} />
           </div>
           <div className="c-use-background home-menu-item " onClick={() => {
-            history.push(STORY_PAGE)
+            history.push(STORY_PAGE)  //  TODO: 剧情介绍页面
           }}>
             <Background img={watchStoryPic} opacity={1} />
           </div>

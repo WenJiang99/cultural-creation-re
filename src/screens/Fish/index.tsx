@@ -11,6 +11,8 @@ import fish_1_rightPic from "../../assets/images/game/fish/fish-1-right.png"
 import ConnectStore from "@/components/ConnectStore"
 import { getRandom } from "@/lib/commons/game"
 import Background from "@/components/Background"
+import CGamePage from "@/components/CGamePage"
+import { SECOND } from "@/lib/constant/timer"
 
 
 
@@ -30,7 +32,7 @@ function FishPage() {
 
   return (
     <CPage bg={bg}>
-      <div className="point-area" >
+      {/* <div className="point-area" >
         <div className="point-img c-use-background">
           <Background img={fishLeftPic} />
         </div>
@@ -54,7 +56,33 @@ function FishPage() {
             }
           })
         }
-      </div>
+      </div> */}
+      <CGamePage
+        type='x'
+        point={point}
+        pointImg={fishLeftPic}
+        time={10 * SECOND}
+        onFinish={()=>{
+          
+        }}
+      >
+        {
+          countArr.map((item, index) => {
+            if (index % 2 === 0) {
+              return <CElement width={150} height={100} direction={'x'} bg={fishRightPic} speed={getSpeed()} key={index + index + ""}
+                onClick={() => {
+                  setPoint(point + 1)
+                }} />
+            } else {
+              return <CElement width={170} height={150} direction='x-reverse' bg={fishLeftPic} speed={getSpeed()} key={index + index + ""}
+                onClick={() => {
+                  setPoint(point + 1)
+                }} />
+            }
+          })
+        }
+
+      </CGamePage>
     </CPage>
   )
 }

@@ -8,6 +8,7 @@ import Background from "@/components/Background"
 import ConnectStore from "@/components/ConnectStore"
 import { useHistory } from "react-router"
 import { FISH_PAGE } from "@/lib/constant/router_path"
+import CTimer from "@/components/CTimer"
 
 function ThingsSystem() {
   const history = useHistory()

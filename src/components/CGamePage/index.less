@@ -1,0 +1,63 @@
+.x-game-page {
+  display: flex;
+  flex-direction: column;
+}
+
+.game-page {
+  width: 100%;
+  height: 100%;
+
+  .x-game-info {
+    width: 100%;
+    height: 150px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+
+  }
+
+  .y-game-info {
+    // TODO: 纵向游戏
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .game {
+    &-info {
+      width: 100%;
+    }
+
+
+
+    &-point {
+      &-area {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        color: white;
+        font-size: 2.5rem;
+        font-weight: 700;
+        // position: absolute;
+
+      }
+
+      &-img {
+        .c-square(150px);
+      }
+    }
+
+    &timer-area {
+      position: absolute;
+      right: 0;
+      display: flex;
+    }
+
+    &-area {
+      width: 100%;
+      height: 90%;
+      position: relative;
+    }
+  }
+}
