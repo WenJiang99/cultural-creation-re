@@ -47,7 +47,11 @@ function FishPage({ goods }: IPageBaseProps) {
         isEnd
           ?
           <CGameResult name={FISH_GAME}
+            award={{
+              '物资': point
+            }}
             onReplay={() => {
+              setPoint(0)
               setEnd(false)
             }}
             onExit={() => {
@@ -61,10 +65,10 @@ function FishPage({ goods }: IPageBaseProps) {
             type='x'
             point={point}
             pointImg={fishLeftPic}
-            time={GAME_DATA[FISH_GAME].time}
+            gameTime={GAME_DATA[FISH_GAME].time}
             onFinish={() => {
               dispatch(add(point))
-              setPoint(0)
+             
               setEnd(true)
 
             }}

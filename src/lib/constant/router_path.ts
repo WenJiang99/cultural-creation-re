@@ -16,3 +16,4 @@ export const FISH_PAGE = '/fish'
 export const FISH_PAGE_ROUTER = getRouter(FISH_GAME)
 export const STORY_GAME_PAGE = '/storyGame'
 
+export const BULLET_GAME_PAGE = '/bulletGame'

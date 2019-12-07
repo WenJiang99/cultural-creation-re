@@ -11,7 +11,8 @@ type Props = {
   type: 'x' | 'y',
   point: number
   pointImg: string
-  time: number
+  gameTime: number,
+  timerTime?: number
   onFinish?: () => any
   bg?: string,
   children?: React.ReactNode
@@ -19,7 +20,7 @@ type Props = {
 }
 
 
-export default function CGamePage({ bg, children, type, point, pointImg, time, onFinish }: Props) {
+export default function CGamePage({ bg, children, type, point, pointImg, gameTime, timerTime, onFinish }: Props) {
   function handleFinish() {
     onFinish && onFinish()
   }
@@ -30,7 +31,7 @@ export default function CGamePage({ bg, children, type, point, pointImg, time, o
       {
         timing
           ?
-          <TipTimer time={3} onFinish={() => {
+          <TipTimer time={timerTime || 3} onFinish={() => {
             setTiming(false)
           }} />
           :
@@ -45,7 +46,7 @@ export default function CGamePage({ bg, children, type, point, pointImg, time, o
             </div>
             <div className="game-timer-area">
               <CTimer
-                time={time}
+                time={gameTime}
                 onFinish={handleFinish}
               />
             </div>

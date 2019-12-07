@@ -16,11 +16,14 @@ import { createLinePoints, useX, useY, canMove } from "@/lib/commons/map"
 import { IPointType } from "@/interfaces/map"
 import { DELAY_TIME, STAR_WIDTH, STAR_HEIGHT, OFFSET_X, OFFSET_Y, CAN_GO, NOT_GO_BACK, NOT_GO_BACK_TIP, NOT_REACH, NOT_REACH_TIP, INIT_NODE_INDEX } from "@/lib/constant/map"
 import clickBg from "../../assets/images/map/clickBg.png"
-import { message, notification, Button, Icon } from "antd"
+import { message, notification, Button, Icon, Drawer } from "antd"
 import { useDispatch } from "react-redux"
 import { setNode } from "@/store/action/node"
 import { getStore } from "@/store"
 import { show } from "@/store/action/log"
+import mailPic from "../../assets/images/map/mail.png"
+import optionsPic from "../../assets/images/map/options.png"
+import buttonBg from "../../assets/images/buttonBg.png"
 
 // TODO:物资计算策略
 
@@ -45,11 +48,12 @@ function GameMap({ soldier, node, goods }: IPageBaseProps) {
   const [pointIndex, setPointIndex] = React.useState(INIT_POINT)
   const [_nodeIndex, setNodeIndex] = React.useState(node.nodeIndex)
   const [isMoving, setMoving] = React.useState(false)
-
+  const [showMail, setShowMail] = React.useState(false)
+  const [showOptions, setShowOptions] = React.useState(false)
 
   const currentNode = NODE_LIST[_nodeIndex]
   let isCanGo = CAN_GO
-  
+
   function saveIndex() {
     dispatch(setNode(_nodeIndex))
   }
@@ -87,7 +91,7 @@ function GameMap({ soldier, node, goods }: IPageBaseProps) {
         key: key,
         message: 'Tips',
         description: '您的日志有更新啦!',
-        duration: 5,
+        duration: 4,
         style: {
           width: '300px',
           backgroundColor: 'rgba(ff,ff,ff,0.7)'
@@ -175,9 +179,63 @@ function GameMap({ soldier, node, goods }: IPageBaseProps) {
           }}>
             <Background img={thingPic} />
           </div>
+          <div className="game-menu-item c-use-background c-clickable-item" onClick={() => {
+            setShowMail(true)
+          }}>
+            <Background img={mailPic} />
+          </div>
+          <div className="game-menu-item c-use-background c-clickable-item" onClick={() => {
+            setShowOptions(true)
+          }}>
+            <Background img={optionsPic} />
+          </div>
         </div>
       </div>
-
+      <Drawer
+        title="邮箱系统"
+        keyboard
+        placement="right"
+        closable={true}
+        onClose={() => setShowMail(false)}
+        visible={showMail}
+      >
+        <p>Some contents...</p>
+        <p>Some contents...</p>
+        <p>Some contents...</p>
+      </Drawer>
+      <Drawer
+        title="游戏选项"
+        keyboard
+        placement="right"
+        closable={true}
+        onClose={() => setShowOptions(false)}
+        visible={showOptions}
+      >
+        <div className="options-container">
+          <div className="c-use-background c-clickable-item"
+            style={{
+              width: '100%',
+              height: 'fit-content',
+              margin: '20px',
+              padding: '10px',
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'center',
+              alignItems: 'center'
+            }}>
+            <Background img={buttonBg} />
+            游戏存档
+          </div>
+          <div className="options-item c-use-background c-clickable-item">
+            <Background img={buttonBg} />
+            游戏删档
+          </div>
+          <div className="options-item c-use-background c-clickable-item">
+            <Background img={buttonBg} />
+            历史知识讲堂
+          </div>
+        </div>
+      </Drawer>
     </CPage>
   )
 }

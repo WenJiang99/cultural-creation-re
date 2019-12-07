@@ -85,7 +85,7 @@ export default function CElement({ bg, bgColor, width, height, direction, speed,
         top: `${getY()}px`,
         left: `${getX()}px`
       }}
-      onDoubleClick={() => {
+      onClick={() => {
         setShow(false)
         handleClick()
       }}
