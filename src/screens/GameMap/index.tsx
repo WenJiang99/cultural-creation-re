@@ -221,18 +221,45 @@ function GameMap({ soldier, node, goods }: IPageBaseProps) {
               display: 'flex',
               flexDirection: 'column',
               justifyContent: 'center',
-              alignItems: 'center'
+              alignItems: 'center',
+              color: '#000',
+              fontSize: '28px',
+              fontWeight: 700
             }}>
             <Background img={buttonBg} />
             游戏存档
           </div>
-          <div className="options-item c-use-background c-clickable-item">
+          <div className="options-item c-use-background c-clickable-item" style={{
+            width: '100%',
+            height: 'fit-content',
+            margin: '20px',
+            padding: '10px',
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'center',
+            alignItems: 'center',
+            color: '#000',
+            fontSize: '28px',
+            fontWeight: 700
+          }}>
             <Background img={buttonBg} />
             游戏删档
           </div>
-          <div className="options-item c-use-background c-clickable-item">
+          <div className="options-item c-use-background c-clickable-item" style={{
+            width: '100%',
+            height: 'fit-content',
+            margin: '20px',
+            padding: '10px',
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'center',
+            alignItems: 'center',
+            color: '#000',
+            fontSize: '28px',
+            fontWeight: 700
+          }}>
             <Background img={buttonBg} />
-            历史知识讲堂
+            历史讲堂
           </div>
         </div>
       </Drawer>

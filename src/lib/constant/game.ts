@@ -15,4 +15,4 @@ export const BULLET_ROLE_SIZE = 150
 export const BULLET_HIT_RANGE = 50
 
 export const BULLET_HIT_X = 10
-export const BULLET_HIT_Y = 20
+export const BULLET_HIT_Y = 10

@@ -21,8 +21,9 @@ export default function CKeyMoveElement({ img, onKeyDown, onMove }: Props) {
 
       switch (e.keyCode) {
         case 37: {
+          let _x;
           setX(x => {
-            let _x = x - BULLET_ROLE_STEP
+            _x = x - BULLET_ROLE_STEP
             if (_x <= BULLET_MIN_X) {
               _x = BULLET_MIN_X
             }
@@ -33,13 +34,14 @@ export default function CKeyMoveElement({ img, onKeyDown, onMove }: Props) {
           break
         }
         case 39: {
+          let _x;
           setX(x => {
-            let _x = x + BULLET_ROLE_STEP
+            _x = x + BULLET_ROLE_STEP
             if (_x >= BULLET_MAX_X - BULLET_ROLE_SIZE / 2) {
               _x = BULLET_MAX_X
             }
 
-            onMove && onMove(_x + BULLET_ROLE_SIZE / 2)
+            onMove && onMove(_x)
             return _x
           })
 

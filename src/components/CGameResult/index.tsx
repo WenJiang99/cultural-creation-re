@@ -12,7 +12,7 @@ type Props = {
   onExit?: () => void
   onSubmit?: () => void
   children?: React.ReactNode
-  award: {
+  award?: {
     [k: string]: number
   }
 }
@@ -38,9 +38,9 @@ export default function CGameResult({ name, message, onExit, onReplay, onSubmit,
       <div className="game-message">{message || DEFAULT_MESSAGE}</div>
       <div className="game-vlaue">
         {
-          Object.keys(award).map(item =>
-            <div className='game-value-item'>
-              {item} ：+ {award[item]}
+          award && Object.keys(award).map(item =>
+            <div className='game-value-item' key={item}>
+              {item} + {award[item]}
             </div>
           )
         }

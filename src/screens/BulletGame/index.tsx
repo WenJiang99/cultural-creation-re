@@ -17,6 +17,8 @@ import Background from '@/components/Background'
 import { IPointType } from '@/interfaces/map'
 import { getDistance, isHited } from '@/lib/commons/ulti'
 import CGameResult from '@/components/CGameResult'
+import { useHistory } from 'react-router'
+import { GAME_MAP_PAGE } from '@/lib/constant/router_path'
 
 function getX() {
   return getRandom(BULLET_MIN_X, BULLET_MAX_X)
@@ -33,13 +35,15 @@ const pointMap: {
 } = {}
 
 let rolePoint: IPointType = {
-  x: (BULLET_MAX_X - BULLET_MIN_X) / 2,
-  y: (BULLET_MAX_Y / 2)
+  x: (BULLET_MAX_X - BULLET_MIN_X) / 2 + BULLET_ROLE_SIZE / 2,
+  y: (BULLET_MAX_Y)
 }
 const INIT_POS = 0
 function BulletGame() {
+  const history = useHistory()
   const [isEnd, setEnd] = React.useState(false)
   const [isHit, setHit] = React.useState(false)
+  const [isStart, setStart] = React.useState(false)
 
   return (
     <CPage bg={bg} >
@@ -48,13 +52,18 @@ function BulletGame() {
           ?
           <CGameResult name={FISH_GAME}
             message={isHit ? '士兵被子弹击中，游戏结束' : '游戏结束，恭喜您获得如下奖励'}
-            award={{
-              '物资': 10,
-              '长官信任值': 20
-            }}
+            // award={{
+            //   '物资': 10,
+            //   '长官信任值': 20
+            // }}
             onReplay={() => {
               setEnd(false)
               setHit(false)
+              setStart(false)
+            }}
+            onExit={() => {
+              history.push(GAME_MAP_PAGE)
+
             }}
 
           />
@@ -67,7 +76,10 @@ function BulletGame() {
             type='x'
             onFinish={() => {
               setEnd(true)
+
+              setStart(false)
             }}
+            onTipTimerFinish={() => setStart(true)}
 
           >
             {
@@ -94,7 +106,11 @@ function BulletGame() {
                     }
                   }}
                   onMove={(point) => {
+                    if (!isStart) {
+                      return
+                    }
                     if (isHited(point, rolePoint)) {
+                      console.log(point, rolePoint)
                       // message.info('hit')
                       setHit(true)
                     }
@@ -103,7 +119,8 @@ function BulletGame() {
               })
             }
             <CKeyMoveElement img={rolePic} onMove={(x_role) => {
-              rolePoint.x = x_role
+              rolePoint.x = x_role + BULLET_ROLE_SIZE / 2
+              message.info(rolePoint.x + " ," + rolePoint.y)
             }} />
           </CGamePage>
       }

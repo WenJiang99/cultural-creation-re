@@ -7,12 +7,12 @@ import Background from "@/components/Background"
 import buttonBg from "@/assets/images/buttonBg.png"
 import { ENCIRCLE_DATA } from "@/lib/data/encircle"
 import ScrollableArea from "@/components/ScrollableArea"
-import { SELECT_SOLDIER_PAGE, GAME_MAP_PAGE, HOME_PAGE } from "@/lib/constant/router_path"
+import { SELECT_SOLDIER_PAGE, GAME_MAP_PAGE, HOME_PAGE, BULLET_GAME_PAGE } from "@/lib/constant/router_path"
 import { useHistory } from "react-router"
 import { IPageBaseProps } from "@/interfaces/page"
 
 const ITEM_DATA = ["一", "二", "三", "四", "五"]
-const INIT_INDEX = 4
+const INIT_INDEX = 0
 
 function GameHome({ soldier }: IPageBaseProps) {
   const history = useHistory()
@@ -41,8 +41,7 @@ function GameHome({ soldier }: IPageBaseProps) {
           }
         </div>
         <div className="story-container">
-          {/* <ScrollableArea text={ENCIRCLE_DATA[currentIndex]} width='70%' type='y' />
-           */}
+
           <div className="story-info-wrapper c-use-scrollable c-auto-line">
             <div className="c-scrollable-wrapper-y">
               {ENCIRCLE_DATA[currentIndex]}
@@ -51,7 +50,7 @@ function GameHome({ soldier }: IPageBaseProps) {
 
         </div>
         <div className="skip-story">
-          <div className="skip-button" onClick={() => history.push(GAME_MAP_PAGE)}>
+          <div className="skip-button" onClick={() => history.push(BULLET_GAME_PAGE)}>
             跳过 >>
             </div>
         </div>

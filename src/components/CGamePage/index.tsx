@@ -16,11 +16,12 @@ type Props = {
   onFinish?: () => any
   bg?: string,
   children?: React.ReactNode
+  onTipTimerFinish?: () => void
 
 }
 
 
-export default function CGamePage({ bg, children, type, point, pointImg, gameTime, timerTime, onFinish }: Props) {
+export default function CGamePage({ bg, children, type, point, pointImg, gameTime, timerTime, onFinish, onTipTimerFinish }: Props) {
   function handleFinish() {
     onFinish && onFinish()
   }
@@ -32,6 +33,7 @@ export default function CGamePage({ bg, children, type, point, pointImg, gameTim
         timing
           ?
           <TipTimer time={timerTime || 3} onFinish={() => {
+            onTipTimerFinish && onTipTimerFinish()
             setTiming(false)
           }} />
           :

@@ -34,13 +34,8 @@ export default function CFlowElement({ range, img, speed, flag, onMove }: Props)
   }
 
   const roadPointList = createLinePoints(range.startPoint, range.endPoint, Math.round(speed))
-  const [isFirst, setFirst] = React.useState(true)
   const [pointIndex, setIndex] = React.useState(INIT_POINT_INDEX)
 
-
-  React.useEffect(() => {
-
-  }, [isFirst])
 
   React.useLayoutEffect(() => {
 

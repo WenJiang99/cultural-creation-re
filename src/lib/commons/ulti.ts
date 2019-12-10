@@ -10,5 +10,5 @@ export function getDistance(p1: IPointType, p2: IPointType): number {
 }
 
 export function isHited(block: IPointType, role: IPointType) {
-    return Math.abs(block.x - role.x) <= BULLET_HIT_X && block.y - role.y >= 10 && Math.abs(block.y - role.y) <= BULLET_HIT_Y
+    return Math.abs(block.x - role.x) <= BULLET_HIT_X  && Math.abs(block.y - role.y) <= BULLET_HIT_Y
 }
